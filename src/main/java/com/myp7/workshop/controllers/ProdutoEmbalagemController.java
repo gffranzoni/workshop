@@ -6,6 +6,7 @@ import com.myp7.workshop.models.enums.Embalagem;
 import com.myp7.workshop.services.ProdutoService;
 import com.myp7.workshop.services.ProdutoEmbalagemService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/produtos/{produtoId}/embalagens")
 public class ProdutoEmbalagemController {
 
-    private final ProdutoService produtoService;
-    private final ProdutoEmbalagemService produtoEmbalagemService;
+    @Autowired
+    private ProdutoService produtoService;
 
-    public ProdutoEmbalagemController(ProdutoService produtoService, ProdutoEmbalagemService produtoEmbalagemService) {
-        this.produtoService = produtoService;
-        this.produtoEmbalagemService = produtoEmbalagemService;
-    }
+    @Autowired
+    private ProdutoEmbalagemService produtoEmbalagemService;
 
     @GetMapping
     public String listar(@PathVariable Long produtoId, Model model) {

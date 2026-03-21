@@ -7,6 +7,7 @@ import com.myp7.workshop.models.Produto;
 import com.myp7.workshop.models.ProdutoEmbalagem;
 import com.myp7.workshop.services.ProdutoEmbalagemService;
 import com.myp7.workshop.services.ProdutoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +24,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/ws/produtos")
 public class ProdutoAPI {
 
-    private final ProdutoService produtoService;
-    private final ProdutoEmbalagemService produtoEmbalagemService;
+    @Autowired
+    private ProdutoService produtoService;
 
-    public ProdutoAPI(ProdutoService produtoService, ProdutoEmbalagemService produtoEmbalagemService) {
-        this.produtoService = produtoService;
-        this.produtoEmbalagemService = produtoEmbalagemService;
-    }
+    @Autowired
+    private ProdutoEmbalagemService produtoEmbalagemService;
 
     @GetMapping
     public ResponseEntity<List<ProdutoResponse>> listar() {

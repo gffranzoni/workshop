@@ -3,6 +3,7 @@ package com.myp7.workshop.controllers;
 import com.myp7.workshop.models.Produto;
 import com.myp7.workshop.services.ProdutoService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,11 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    private final ProdutoService produtoService;
-
-    public ProdutoController(ProdutoService produtoService) {
-        this.produtoService = produtoService;
-    }
+    @Autowired
+    private ProdutoService produtoService;
 
     @GetMapping
     public String listar(Model model) {
