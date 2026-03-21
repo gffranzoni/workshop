@@ -79,14 +79,4 @@ public class Produto {
     public void setEmbalagens(List<ProdutoEmbalagem> embalagens) {
         this.embalagens = embalagens;
     }
-
-    public void addEmbalagem(ProdutoEmbalagem embalagem) {
-        embalagens.add(embalagem);
-        embalagem.setProduto(this);
-    }
-
-    public void removeEmbalagem(ProdutoEmbalagem embalagem) {
-        embalagens.remove(embalagem);
-        embalagem.setProduto(null);
-    }
 }

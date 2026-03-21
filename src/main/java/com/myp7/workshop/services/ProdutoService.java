@@ -3,6 +3,7 @@ package com.myp7.workshop.services;
 import com.myp7.workshop.models.Produto;
 import com.myp7.workshop.repositories.ProdutoRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class ProdutoService {
                 .orElseThrow(() -> new EntityNotFoundException("Produto nao encontrado: " + id));
     }
 
-    public Produto criar(Produto produto) {
+    public Produto criar(@Valid Produto produto) {
         produto.setId(null);
         return produtoRepository.save(produto);
     }

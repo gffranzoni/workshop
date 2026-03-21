@@ -1,18 +1,10 @@
 package com.myp7.workshop.models;
 
 import com.myp7.workshop.models.enums.Embalagem;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(
@@ -30,16 +22,21 @@ public class ProdutoEmbalagem {
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "produto_id", nullable = false)
+    @JoinColumn(name = "produto_id", nullable = false, foreignKey = @ForeignKey(name = "fk_produto_embalagem_produto"))
     private Produto produto;
 
+    @NotNull(message = "O tipo de embalagem é obrigatório")
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_embalagem", nullable = false, length = 20)
     private Embalagem embalagem;
 
+    @NotNull(message = "O código de barras é obrigatório")
+    @NotBlank(message = "O código de barras não pode ser vazio")
     @Column(name = "codigo_barras", nullable = false, length = 40)
     private String codigoDeBarras;
 
+    @Positive(message = "A quantidade deve ser maior que zero")
+    @NotNull(message = "A quantidade é obrigatória")
     @Column(nullable = false)
     private Double quantidade;
 
