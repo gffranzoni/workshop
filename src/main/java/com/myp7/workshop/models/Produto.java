@@ -31,7 +31,7 @@ public class Produto {
 
     @NotNull(message = "O código do fabricante é obrigatório")
     @NotBlank(message = "O código do fabricante não pode ser vazio")
-    @Column(nullable = false, length = 60)
+    @Column(name = "codigofabricante", nullable = false, length = 60)
     private String codigoFabricante;
 
     @Column(nullable = false)
